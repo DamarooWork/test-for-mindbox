@@ -13,7 +13,7 @@ export default function ToDoFooter({
   const [notDoneTasks, setNotDoneTasks] = useState<number>(0)
   useEffect(() => {
     setNotDoneTasks(0)
-    tasks.forEach((task, i) => {
+    tasks.forEach((task) => {
       if (!task.completed) {
         setNotDoneTasks((prev) => ++prev)
       }
