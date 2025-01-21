@@ -1,4 +1,6 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
+import arrowDown from '/icons8-arrow-down-30.png'
+
 export default function TodoForm({
   newTaskHandler,
 }: {
@@ -22,6 +24,11 @@ export default function TodoForm({
       className="w-full border-b-[1px] relative"
       onSubmit={handleSubmit(onSubmit)}
     >
+      <img
+        className="absolute w-4 h-4 opacity-40 top-5 left-3"
+        src={arrowDown}
+        alt="Arrow down"
+      />
       <label className="hidden" htmlFor="task">
         New Task
       </label>
