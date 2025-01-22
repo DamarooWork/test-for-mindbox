@@ -1,9 +1,9 @@
-import TodoApp from "./components/todo/TodoApp";
+import ToDoApp from './components/todo/ToDoApp'
 
 export default function App() {
   return (
     <>
-      <TodoApp/>
+      <ToDoApp />
     </>
   )
 }

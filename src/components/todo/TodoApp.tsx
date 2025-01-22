@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import ToDoFooter from './ToDoFooter'
-import TodoForm from './TodoForm'
-import TodoHeader from './TodoHeader'
+import ToDoForm from './ToDoForm'
+import ToDoHeader from './ToDoHeader'
 import ToDoList from './ToDoList'
 
 const uniqueId = () => Math.floor(Math.random() * Date.now())
@@ -79,7 +79,7 @@ export default function TodoApp() {
       className="bg-[#f5f5f5] min-w-[100vw] min-h-[100vh]
      flex flex-col items-center justify-center text-center relative z-10"
     >
-      <TodoHeader />
+      <ToDoHeader />
       <main
         className="relative w-[300px]   flex flex-col sm:w-[500px]   shadow-sm
        bg-white after:absolute  after:z-[-1]
@@ -90,7 +90,7 @@ export default function TodoApp() {
        before:shadow-sm before:left-[8px] before:bg-white
        "
       >
-        <TodoForm newTaskHandler={newTaskHandler} />
+        <ToDoForm newTaskHandler={newTaskHandler} />
         <ToDoList tasks={tasks} completeTaskHandler={completeTaskHandler} />
         <ToDoFooter
           tasks={tasks}

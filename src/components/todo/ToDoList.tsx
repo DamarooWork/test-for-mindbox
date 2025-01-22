@@ -30,6 +30,7 @@ export default function ToDoList({
                 className="checkbox"
                 id={`todo-${id}`}
                 type="checkbox"
+                data-testid='checkbox'
               />
               <span className="checkmark"></span>
               <p
