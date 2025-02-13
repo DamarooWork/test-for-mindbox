@@ -4,11 +4,10 @@ import { useDispatch } from 'react-redux'
 import { addTodo } from '../../store/todos/todosSlice'
 
 export default function TodoForm({
-  newTaskHandler,
+  addTodoHandler,
 }: {
-  newTaskHandler: (label: string) => void
+  addTodoHandler: (label: string) => void
 }) {
-  const dispatch = useDispatch()
   const { register, handleSubmit, reset, formState, clearErrors } =
     useForm<IFormTodo>({
       shouldUnregister: true,
@@ -16,8 +15,7 @@ export default function TodoForm({
     })
 
   const onSubmit: SubmitHandler<IFormTodo> = (data: IFormTodo) => {
-    newTaskHandler(data.label)
-    dispatch(addTodo(data.label))
+    addTodoHandler(data.label)
     reset()
     clearErrors()
   }

@@ -1,84 +1,31 @@
-import { useState } from 'react'
 import ToDoFooter from './ToDoFooter'
 import ToDoForm from './ToDoForm'
 import ToDoHeader from './ToDoHeader'
 import ToDoList from './ToDoList'
-import { uniqueId } from '../../lib/utils'
 import { useDispatch } from 'react-redux'
-import { completeTodo, deleteDoneTodos } from '../../store/todos/todosSlice'
+import {
+  addTodo,
+  completeTodo,
+  deleteDoneTodos,
+  filterTodos,
+} from '../../store/todos/todosSlice'
 
 export default function TodoApp() {
   const dispatch = useDispatch()
-
-  const defaultTasks: ITodo[] = [
-    { id: 1, completed: false, label: 'Тестовое задание', show: true },
-    { id: 2, completed: true, label: 'Прекрасный код', show: true },
-    { id: 3, completed: false, label: 'Покрытие тестами', show: true },
-  ]
-  let tasksFromLocal: string = localStorage.getItem('Todos')!
-  let localTasks: ITodo[] = JSON.parse(tasksFromLocal)
-
-  const [tasks, setTasks] = useState<ITodo[]>(
-    localTasks ? localTasks : defaultTasks
-  )
-
+  
   const completeTodoHandler = (taskId: number) => {
     dispatch(completeTodo(taskId))
-    const updatedTasks = tasks.map((task) => {
-      const completed = !task.completed
-      return task.id === taskId ? { ...task, completed } : task
-    })
-    setTasks(updatedTasks)
-    let string = JSON.stringify(updatedTasks)
-    localStorage.setItem('Todos', string)
   }
 
   const deleteTodoHandler = () => {
     dispatch(deleteDoneTodos())
-    const updatedTasks = tasks.filter((task) => task.completed === false)
-    setTasks(updatedTasks)
-    let string = JSON.stringify(updatedTasks)
-    localStorage.setItem('Todos', string)
   }
 
-  const newTaskHandler = (label: string) => {
-    const newTask: ITodo = {
-      id: uniqueId(),
-      completed: false,
-      label,
-      show: true,
-    }
-    const updatedTasks: ITodo[] = [...tasks, newTask]
-    setTasks(updatedTasks)
-    let string = JSON.stringify(updatedTasks)
-    localStorage.setItem('Todos', string)
+  const addTodoHandler = (label: string) => {
+    dispatch(addTodo(label))
   }
-  const filterTodos = (filter: Filter) => {
-    let updatedTasks
-    switch (filter) {
-      case 'All':
-        updatedTasks = tasks.map((task) => {
-          task.show = true
-          return task
-        })
-        setTasks(updatedTasks)
-        break
-      case 'Active':
-        updatedTasks = tasks.map((task) => {
-          !task.completed ? (task.show = true) : (task.show = false)
-          return task
-        })
-        setTasks(updatedTasks)
-        break
-      case 'Completed':
-        updatedTasks = tasks.map((task) => {
-          task.completed ? (task.show = true) : (task.show = false)
-          return task
-        })
-        setTasks(updatedTasks)
-        break
-    }
-    //
+  const filterTodosHandler = (filter: Filter) => {
+    dispatch(filterTodos(filter))
   }
   return (
     <section
@@ -96,11 +43,10 @@ export default function TodoApp() {
        before:shadow-sm before:left-[8px] before:bg-white
        "
       >
-        <ToDoForm newTaskHandler={newTaskHandler} />
-        <ToDoList tasks={tasks} completeTodoHandler={completeTodoHandler} />
+        <ToDoForm addTodoHandler={addTodoHandler} />
+        <ToDoList completeTodoHandler={completeTodoHandler} />
         <ToDoFooter
-          tasks={tasks}
-          filterTodos={filterTodos}
+          filterTodosHandler={filterTodosHandler}
           deleteTodoHandler={deleteTodoHandler}
         />
       </main>

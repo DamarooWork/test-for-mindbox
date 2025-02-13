@@ -1,1 +1,1 @@
-export const uniqueId = () => Math.floor(Math.random() * Date.now())
+export const getUniqueNumber = () => Date.now()

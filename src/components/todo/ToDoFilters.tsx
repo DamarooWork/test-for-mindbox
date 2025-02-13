@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
 export default function ToDoFilters({
-  filterTodos,
+  filterTodosHandler,
 }: {
-  filterTodos: (filter: Filter) => void
+  filterTodosHandler: (filter: Filter) => void
 }) {
   const [activeFilter, setActiveFilter] = useState<Filter>('All')
   function btnClick(filter: Filter) {
-    filterTodos(filter)
+    filterTodosHandler(filter)
     setActiveFilter(filter)
   }
   return (

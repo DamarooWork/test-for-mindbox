@@ -4,7 +4,6 @@ import { RootState } from '../../store'
 export default function ToDoList({
   completeTodoHandler,
 }: {
-  tasks: ITodo[]
   completeTodoHandler: (id: number) => void
 }) {
   const todos = useSelector((state: RootState) => state.todos)
