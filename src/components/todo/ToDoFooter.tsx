@@ -14,16 +14,15 @@ export default function ToDoFooter({
   const todos = useSelector((state: RootState) => state.todos)
   useEffect(() => {
     setNotDoneTodos(0)
-    todos.forEach((task) => {
-      if (!task.completed) {
+    todos.forEach((todo) => {
+      if (!todo.completed) {
         setNotDoneTodos((prev) => ++prev)
       }
     })
   }, [todos])
   return (
     <footer
-      className="flex flex-col sm:flex-row gap-4 
-    sm:gap-0 justify-between items-center px-4 py-4 text-xs"
+      className="flex flex-col items-center justify-between gap-4 px-4 py-4 text-xs sm:flex-row sm:gap-0"
     >
       {notDoneTodos === 0 ? (
         <h2>All done!</h2>

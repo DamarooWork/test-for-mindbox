@@ -1,7 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import arrowDown from '/icons8-arrow-down-30.png'
-import { useDispatch } from 'react-redux'
-import { addTodo } from '../../store/todos/todosSlice'
 
 export default function TodoForm({
   addTodoHandler,
@@ -31,15 +29,15 @@ export default function TodoForm({
         src={arrowDown}
         alt="Arrow down"
       />
-      <label className="hidden" htmlFor="task">
-        New Task
+      <label className="hidden" htmlFor="todo">
+        New Todo
       </label>
       <input
         className="w-full px-10 py-4  placeholder:text-[#eaeaea] placeholder:italic
         focus:outline-none focus:border-[#eaeaea] focus:ring-[#eaeaea] focus:ring-1
         "
         autoComplete="off"
-        id="task"
+        id="todo"
         placeholder="What needs to be done?"
         {...register('label', {
           required: 'Todo cannot be blank',
@@ -51,7 +49,7 @@ export default function TodoForm({
       />
       <ul className="absolute bottom-0 left-[50%] translate-x-[-50%] w-full">
         {errors.map((error, i) => (
-          <li key={i} className="text-red-500 text-sm opacity-60">
+          <li key={i} className="text-sm text-red-500 opacity-60">
             {error.message}
           </li>
         ))}

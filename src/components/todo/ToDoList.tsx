@@ -25,7 +25,7 @@ export default function ToDoList({
           `}
           >
             <label
-              className="container flex justify-center items-center"
+              className="container flex items-center justify-center"
               htmlFor={`todo-${id}`}
             >
               <input

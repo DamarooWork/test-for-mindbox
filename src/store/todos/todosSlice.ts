@@ -21,6 +21,8 @@ const todosSlice = createSlice({
         show: true,
       }
       state.push(newTodo)
+      let string = JSON.stringify(state)
+      localStorage.setItem('Todos', string)
     },
     completeTodo: (state, action: PayloadAction<number>) => {
       const updatedTodos = state.map((todo) => {
@@ -60,6 +62,7 @@ const todosSlice = createSlice({
   },
 })
 
-export const { addTodo, completeTodo, deleteDoneTodos, filterTodos } = todosSlice.actions
+export const { addTodo, completeTodo, deleteDoneTodos, filterTodos } =
+  todosSlice.actions
 
 export default todosSlice.reducer
