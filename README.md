@@ -12,8 +12,8 @@ https://damaroowork.github.io/test-for-mindbox/
 Использованные технологии:
 > React
 > Vite
+> Redux/ReduxToolkit
 > Typescript
-> React Hooks
 > Tailwind
 > React-hook-form
 > Jest
