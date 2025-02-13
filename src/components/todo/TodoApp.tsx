@@ -5,7 +5,7 @@ import ToDoHeader from './ToDoHeader'
 import ToDoList from './ToDoList'
 import { uniqueId } from '../../lib/utils'
 import { useDispatch } from 'react-redux'
-import { deleteDoneTodos } from '../../store/todos/todosSlice'
+import { completeTodo, deleteDoneTodos } from '../../store/todos/todosSlice'
 
 export default function TodoApp() {
   const dispatch = useDispatch()
@@ -22,7 +22,8 @@ export default function TodoApp() {
     localTasks ? localTasks : defaultTasks
   )
 
-  const completeTaskHandler = (taskId: number) => {
+  const completeTodoHandler = (taskId: number) => {
+    dispatch(completeTodo(taskId))
     const updatedTasks = tasks.map((task) => {
       const completed = !task.completed
       return task.id === taskId ? { ...task, completed } : task
@@ -32,7 +33,7 @@ export default function TodoApp() {
     localStorage.setItem('Todos', string)
   }
 
-  const deleteTaskHandler = () => {
+  const deleteTodoHandler = () => {
     dispatch(deleteDoneTodos())
     const updatedTasks = tasks.filter((task) => task.completed === false)
     setTasks(updatedTasks)
@@ -52,7 +53,7 @@ export default function TodoApp() {
     let string = JSON.stringify(updatedTasks)
     localStorage.setItem('Todos', string)
   }
-  const filterTasks = (filter: Filter) => {
+  const filterTodos = (filter: Filter) => {
     let updatedTasks
     switch (filter) {
       case 'All':
@@ -96,11 +97,11 @@ export default function TodoApp() {
        "
       >
         <ToDoForm newTaskHandler={newTaskHandler} />
-        <ToDoList tasks={tasks} completeTaskHandler={completeTaskHandler} />
+        <ToDoList tasks={tasks} completeTodoHandler={completeTodoHandler} />
         <ToDoFooter
           tasks={tasks}
-          filterTasks={filterTasks}
-          deleteTaskHandler={deleteTaskHandler}
+          filterTodos={filterTodos}
+          deleteTodoHandler={deleteTodoHandler}
         />
       </main>
     </section>

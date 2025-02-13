@@ -3,19 +3,19 @@ import Filters from './ToDoFilters'
 
 export default function ToDoFooter({
   tasks,
-  filterTasks,
-  deleteTaskHandler,
+  filterTodos,
+  deleteTodoHandler,
 }: {
   tasks: ITodo[]
-  filterTasks: (filter: Filter) => void
-  deleteTaskHandler: () => void
+  filterTodos: (filter: Filter) => void
+  deleteTodoHandler: () => void
 }) {
-  const [notDoneTasks, setNotDoneTasks] = useState<number>(0)
+  const [notDoneTodos, setNotDoneTodos] = useState<number>(0)
   useEffect(() => {
-    setNotDoneTasks(0)
+    setNotDoneTodos(0)
     tasks.forEach((task) => {
       if (!task.completed) {
-        setNotDoneTasks((prev) => ++prev)
+        setNotDoneTodos((prev) => ++prev)
       }
     })
   }, [tasks])
@@ -24,16 +24,16 @@ export default function ToDoFooter({
       className="flex flex-col sm:flex-row gap-4 
     sm:gap-0 justify-between items-center px-4 py-4 text-xs"
     >
-      {notDoneTasks === 0 ? (
+      {notDoneTodos === 0 ? (
         <h2>All done!</h2>
-      ) : notDoneTasks === 1 ? (
-        <h2>{notDoneTasks} item left</h2>
+      ) : notDoneTodos === 1 ? (
+        <h2>{notDoneTodos} item left</h2>
       ) : (
-        <h2>{notDoneTasks} items left</h2>
+        <h2>{notDoneTodos} items left</h2>
       )}
 
-      <Filters filterTasks={filterTasks} />
-      <button onClick={() => deleteTaskHandler()}>Clear completed</button>
+      <Filters filterTodos={filterTodos} />
+      <button onClick={() => deleteTodoHandler()}>Clear completed</button>
     </footer>
   )
 }

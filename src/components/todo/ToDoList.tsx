@@ -1,22 +1,23 @@
-// import { useSelector } from "react-redux"
-// import { RootState } from "../../store"
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
 
 export default function ToDoList({
-  tasks,
-  completeTaskHandler,
+  completeTodoHandler,
 }: {
   tasks: ITodo[]
-  completeTaskHandler: (id: number) => void
+  completeTodoHandler: (id: number) => void
 }) {
-  // const todos = useSelector((state: RootState)=> state.todos)
+  const todos = useSelector((state: RootState) => state.todos)
+  console.log(todos)
+
   return (
     <ul
       role="list"
       className="max-h-[50vh] overflow-y-auto"
       aria-labelledby="list-heading"
     >
-      {tasks.length ? (
-        tasks.map(({ label, completed, id, show }: ITodo) => (
+      {todos.length ? (
+        todos.map(({ label, completed, id, show }: ITodo) => (
           <li
             key={id}
             className={`border-b-[1px] py-4 px-2 text-left ${
@@ -29,12 +30,12 @@ export default function ToDoList({
               htmlFor={`todo-${id}`}
             >
               <input
-                onChange={() => completeTaskHandler(id)}
+                onChange={() => completeTodoHandler(id)}
                 checked={completed}
                 className="checkbox"
                 id={`todo-${id}`}
                 type="checkbox"
-                data-testid='checkbox'
+                data-testid="checkbox"
               />
               <span className="checkmark"></span>
               <p
