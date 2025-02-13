@@ -40,20 +40,19 @@ const todosSlice = createSlice({
       return updatedTodos
     },
     filterTodos: (state, action: PayloadAction<Filter>) => {
-      let updatedTasks
       switch (action.payload) {
         case 'All':
-          updatedTasks = state.map((todo) => {
+          state.map((todo) => {
             todo.show = true
           })
           break
         case 'Active':
-          updatedTasks = state.map((todo) => {
+          state.map((todo) => {
             !todo.completed ? (todo.show = true) : (todo.show = false)
           })
           break
         case 'Completed':
-          updatedTasks = state.map((todo) => {
+          state.map((todo) => {
             todo.completed ? (todo.show = true) : (todo.show = false)
           })
           break
