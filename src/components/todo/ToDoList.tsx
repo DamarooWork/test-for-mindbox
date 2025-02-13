@@ -1,9 +1,11 @@
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
-
+import deleteIcon from '../../../public/deleteIcon.png'
 export default function ToDoList({
   completeTodoHandler,
+  deleteTodoHandler,
 }: {
+  deleteTodoHandler: (id: number) => void
   completeTodoHandler: (id: number) => void
 }) {
   const todos = useSelector((state: RootState) => state.todos)
@@ -17,7 +19,7 @@ export default function ToDoList({
         todos.map(({ label, completed, id, show }: ITodo) => (
           <li
             key={id}
-            className={`border-b-[1px] py-4 px-2 text-left ${
+            className={`border-b-[1px] relative py-4 px-2 text-left ${
               show ? 'block' : 'hidden'
             }
           `}
@@ -43,6 +45,16 @@ export default function ToDoList({
                 {label}
               </p>
             </label>
+            <button
+              onClick={() => deleteTodoHandler(id)}
+              className="absolute -translate-y-1/2 d top-1/2 right-4"
+            >
+              <img
+                className="object-cover w-5 h-auto"
+                src={deleteIcon}
+                alt="Delete todo icon"
+              />
+            </button>
           </li>
         ))
       ) : (

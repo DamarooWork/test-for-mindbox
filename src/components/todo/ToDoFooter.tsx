@@ -5,10 +5,10 @@ import { RootState } from '../../store'
 
 export default function ToDoFooter({
   filterTodosHandler,
-  deleteTodoHandler,
+  deleteDoneTodosHandler,
 }: {
   filterTodosHandler: (filter: Filter) => void
-  deleteTodoHandler: () => void
+  deleteDoneTodosHandler: () => void
 }) {
   const [notDoneTodos, setNotDoneTodos] = useState<number>(0)
   const todos = useSelector((state: RootState) => state.todos)
@@ -33,7 +33,7 @@ export default function ToDoFooter({
       )}
 
       <Filters filterTodosHandler={filterTodosHandler} />
-      <button onClick={() => deleteTodoHandler()}>Clear completed</button>
+      <button onClick={() => deleteDoneTodosHandler()}>Clear completed</button>
     </footer>
   )
 }

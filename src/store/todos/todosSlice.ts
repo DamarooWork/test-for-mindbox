@@ -8,7 +8,7 @@ const initialState: ITodo[] = [
 ]
 let tasksFromLocal: string = localStorage.getItem('Todos')!
 let localTasks: ITodo[] = JSON.parse(tasksFromLocal)
-
+let allDone = false
 const todosSlice = createSlice({
   name: 'todos',
   initialState: localTasks ? localTasks : initialState,
@@ -39,6 +39,14 @@ const todosSlice = createSlice({
       localStorage.setItem('Todos', string)
       return updatedTodos
     },
+    deleteTodo: (state, action: PayloadAction<number>) => {
+      const updatedTodos = [...state].filter(
+        (todo) => todo.id !== action.payload
+      )
+      let string = JSON.stringify(updatedTodos)
+      localStorage.setItem('Todos', string)
+      return updatedTodos
+    },
     filterTodos: (state, action: PayloadAction<Filter>) => {
       switch (action.payload) {
         case 'All':
@@ -61,10 +69,28 @@ const todosSlice = createSlice({
           break
       }
     },
+    checkAllTodos: (state) => {
+      if (allDone) {
+        state.map((todo) => {
+          todo.completed = false
+        })
+      } else {
+        state.map((todo) => {
+          todo.completed = true
+        })
+      }
+      allDone = !allDone
+    },
   },
 })
 
-export const { addTodo, completeTodo, deleteDoneTodos, filterTodos } =
-  todosSlice.actions
+export const {
+  addTodo,
+  completeTodo,
+  deleteDoneTodos,
+  filterTodos,
+  deleteTodo,
+  checkAllTodos,
+} = todosSlice.actions
 
 export default todosSlice.reducer

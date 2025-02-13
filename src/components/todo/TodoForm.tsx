@@ -3,7 +3,9 @@ import arrowDown from '/icons8-arrow-down-30.png'
 
 export default function TodoForm({
   addTodoHandler,
+  checkAllTodosHandler,
 }: {
+  checkAllTodosHandler: () => void
   addTodoHandler: (label: string) => void
 }) {
   const { register, handleSubmit, reset, formState, clearErrors } =
@@ -25,9 +27,10 @@ export default function TodoForm({
       onSubmit={handleSubmit(onSubmit)}
     >
       <img
-        className="absolute w-4 h-4 opacity-40 top-5 left-3"
+        className="absolute w-4 h-auto cursor-pointer opacity-40 top-5 left-3"
         src={arrowDown}
         alt="Arrow down"
+        onClick={checkAllTodosHandler}
       />
       <label className="hidden" htmlFor="todo">
         New Todo
