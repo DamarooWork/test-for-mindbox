@@ -2,7 +2,7 @@ export default function ToDoList({
   tasks,
   completeTaskHandler,
 }: {
-  tasks: ITask[]
+  tasks: ITodo[]
   completeTaskHandler: (id: number) => void
 }) {
   return (
@@ -12,7 +12,7 @@ export default function ToDoList({
       aria-labelledby="list-heading"
     >
       {tasks.length ? (
-        tasks.map(({ label, completed, id, show }: ITask) => (
+        tasks.map(({ label, completed, id, show }: ITodo) => (
           <li
             key={id}
             className={`border-b-[1px] py-4 px-2 text-left ${

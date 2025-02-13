@@ -6,15 +6,15 @@ import ToDoList from './ToDoList'
 
 const uniqueId = () => Math.floor(Math.random() * Date.now())
 export default function TodoApp() {
-  const defaultTasks: ITask[] = [
+  const defaultTasks: ITodo[] = [
     { id: 1, completed: false, label: 'Тестовое задание', show: true },
     { id: 2, completed: true, label: 'Прекрасный код', show: true },
     { id: 3, completed: false, label: 'Покрытие тестами', show: true },
   ]
   let tasksFromLocal: string = localStorage.getItem('Todos')!
-  let localTasks: ITask[] = JSON.parse(tasksFromLocal)
+  let localTasks: ITodo[] = JSON.parse(tasksFromLocal)
 
-  const [tasks, setTasks] = useState<ITask[]>(
+  const [tasks, setTasks] = useState<ITodo[]>(
     localTasks ? localTasks : defaultTasks
   )
 
@@ -36,13 +36,13 @@ export default function TodoApp() {
   }
 
   const newTaskHandler = (label: string) => {
-    const newTask: ITask = {
+    const newTask: ITodo = {
       id: uniqueId(),
       completed: false,
       label,
       show: true,
     }
-    const updatedTasks: ITask[] = [...tasks, newTask]
+    const updatedTasks: ITodo[] = [...tasks, newTask]
     setTasks(updatedTasks)
     let string = JSON.stringify(updatedTasks)
     localStorage.setItem('Todos', string)

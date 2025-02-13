@@ -6,7 +6,7 @@ export default function ToDoFooter({
   filterTasks,
   deleteTaskHandler,
 }: {
-  tasks: ITask[]
+  tasks: ITodo[]
   filterTasks: (filter: Filter) => void
   deleteTaskHandler: () => void
 }) {

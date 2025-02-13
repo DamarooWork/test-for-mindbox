@@ -7,12 +7,12 @@ export default function TodoForm({
   newTaskHandler: (label: string) => void
 }) {
   const { register, handleSubmit, reset, formState, clearErrors } =
-    useForm<IFormTask>({
+    useForm<IFormTodo>({
       shouldUnregister: true,
       defaultValues: { label: '' },
     })
 
-  const onSubmit: SubmitHandler<IFormTask> = (data: IFormTask) => {
+  const onSubmit: SubmitHandler<IFormTodo> = (data: IFormTodo) => {
     newTaskHandler(data.label)
     reset()
     clearErrors()
