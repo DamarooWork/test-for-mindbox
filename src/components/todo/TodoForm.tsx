@@ -1,11 +1,14 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import arrowDown from '/icons8-arrow-down-30.png'
+import { useDispatch } from 'react-redux'
+import { addTodo } from '../../store/todos/todosSlice'
 
 export default function TodoForm({
   newTaskHandler,
 }: {
   newTaskHandler: (label: string) => void
 }) {
+  const dispatch = useDispatch()
   const { register, handleSubmit, reset, formState, clearErrors } =
     useForm<IFormTodo>({
       shouldUnregister: true,
@@ -14,6 +17,7 @@ export default function TodoForm({
 
   const onSubmit: SubmitHandler<IFormTodo> = (data: IFormTodo) => {
     newTaskHandler(data.label)
+    dispatch(addTodo(data.label))
     reset()
     clearErrors()
   }

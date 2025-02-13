@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { uniqueId } from '../../lib/utils'
 
 const initialState: ITodo[] = [
   { id: 1, completed: false, label: 'Тестовое задание', show: true },
@@ -10,10 +11,21 @@ const todosSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    add: (state, action) => {
-      state.push(action.payload)
+    addTodo: (state, action: PayloadAction<string>) => {
+      const newTodo: ITodo = {
+        id: uniqueId(),
+        completed: false,
+        label: action.payload,
+        show: true,
+      }
+      state.push(newTodo)
+    },
+    deleteDoneTodos: (state) => {
+      state.filter((todo) => todo.completed === false)
     },
   },
 })
+
+export const { deleteDoneTodos, addTodo } = todosSlice.actions
 
 export default todosSlice.reducer

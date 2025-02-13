@@ -3,9 +3,13 @@ import ToDoFooter from './ToDoFooter'
 import ToDoForm from './ToDoForm'
 import ToDoHeader from './ToDoHeader'
 import ToDoList from './ToDoList'
+import { uniqueId } from '../../lib/utils'
+import { useDispatch } from 'react-redux'
+import { deleteDoneTodos } from '../../store/todos/todosSlice'
 
-const uniqueId = () => Math.floor(Math.random() * Date.now())
 export default function TodoApp() {
+  const dispatch = useDispatch()
+
   const defaultTasks: ITodo[] = [
     { id: 1, completed: false, label: 'Тестовое задание', show: true },
     { id: 2, completed: true, label: 'Прекрасный код', show: true },
@@ -29,6 +33,7 @@ export default function TodoApp() {
   }
 
   const deleteTaskHandler = () => {
+    dispatch(deleteDoneTodos())
     const updatedTasks = tasks.filter((task) => task.completed === false)
     setTasks(updatedTasks)
     let string = JSON.stringify(updatedTasks)

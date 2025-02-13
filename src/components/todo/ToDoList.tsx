@@ -1,3 +1,6 @@
+// import { useSelector } from "react-redux"
+// import { RootState } from "../../store"
+
 export default function ToDoList({
   tasks,
   completeTaskHandler,
@@ -5,6 +8,7 @@ export default function ToDoList({
   tasks: ITodo[]
   completeTaskHandler: (id: number) => void
 }) {
+  // const todos = useSelector((state: RootState)=> state.todos)
   return (
     <ul
       role="list"
