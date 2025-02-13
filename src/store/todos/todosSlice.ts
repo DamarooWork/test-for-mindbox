@@ -56,6 +56,9 @@ const todosSlice = createSlice({
             todo.completed ? (todo.show = true) : (todo.show = false)
           })
           break
+        default:
+          state
+          break
       }
     },
   },

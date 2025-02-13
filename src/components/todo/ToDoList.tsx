@@ -7,8 +7,6 @@ export default function ToDoList({
   completeTodoHandler: (id: number) => void
 }) {
   const todos = useSelector((state: RootState) => state.todos)
-  console.log(todos)
-
   return (
     <ul
       role="list"
