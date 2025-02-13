@@ -16,4 +16,4 @@ https://damaroowork.github.io/test-for-mindbox/
 > Typescript
 > Tailwind
 > React-hook-form
-> Jest
+> React-testing-library
