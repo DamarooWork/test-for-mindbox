@@ -17,3 +17,4 @@ https://damaroowork.github.io/test-for-mindbox/
 > Tailwind
 > React-hook-form
 > React-testing-library
+> GSAP
