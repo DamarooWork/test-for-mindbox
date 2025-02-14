@@ -1,7 +1,6 @@
 Test work for Mindbox!
 
-Gh-pages:
-https://damaroowork.github.io/test-for-mindbox/
+Deploy: https://damaroowork.github.io/test-for-mindbox/
 
 Руководство по запуску:
 1. git clone https://github.com/DamarooWork/test-for-mindbox.git
