@@ -1,8 +1,8 @@
 interface ITodo {
-id: bumber
-label: string
-completed: boolean
-show: boolean
+  id: number
+  label: string
+  completed: boolean
+  show: boolean
 }
 interface IFormTodo {
   label: string

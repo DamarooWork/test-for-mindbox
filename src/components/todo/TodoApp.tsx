@@ -6,25 +6,15 @@ import { useDispatch } from 'react-redux'
 import {
   addTodo,
   checkAllTodos,
-  completeTodo,
   deleteDoneTodos,
-  deleteTodo,
   filterTodos,
 } from '../../store/todos/todosSlice'
 
 export default function TodoApp() {
   const dispatch = useDispatch()
-
-  const completeTodoHandler = (todoId: number) => {
-    dispatch(completeTodo(todoId))
-  }
-  const deleteTodoHandler = (todoId: number) => {
-    dispatch(deleteTodo(todoId))
-  }
   const deleteDoneTodosHandler = () => {
     dispatch(deleteDoneTodos())
   }
-
   const addTodoHandler = (label: string) => {
     dispatch(addTodo(label))
   }
@@ -45,10 +35,7 @@ export default function TodoApp() {
           checkAllTodosHandler={checkAllTodosHandler}
           addTodoHandler={addTodoHandler}
         />
-        <ToDoList
-          deleteTodoHandler={deleteTodoHandler}
-          completeTodoHandler={completeTodoHandler}
-        />
+        <ToDoList />
         <ToDoFooter
           filterTodosHandler={filterTodosHandler}
           deleteDoneTodosHandler={deleteDoneTodosHandler}
